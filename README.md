@@ -12,8 +12,13 @@ Inspired by http://neography.com/experiment/circles/solarsystem/ and http://nico
 Forked from [Julian Garnier](http://codepen.io/juliangarnier/)'s Pen [CSS 3D Solar System](http://codepen.io/juliangarnier/pen/idhuG/).
 
 TODO:
+
 Adjust earth orbit (center the earth in the screen)
+
 Adjust lunar orbit (give it some more distance from the earth)
+
 Track the moon in its orbit (idea: use clock (animation time -> lunar phase))
+
 Make space on screen for the svg image of the lunar phase
+
 Make space for extra stats
