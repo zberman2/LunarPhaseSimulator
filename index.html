@@ -901,6 +901,7 @@ background: white;
   <script type="text/javascript">
     var myVar;
     var startTime;
+    var period = 29.5305882;
     function showPhase(){
         var now = $.now();
         var diff = now - startTime;
@@ -908,12 +909,16 @@ background: white;
 
         // percent will be out of 200
         var percent = Math.round(((diff / 20000.0) - rep) * 200);
-        console.log(percent);
+        //console.log(percent);
 
         var sourceString = "Lunar_Phase_Diagrams/Moon-";
         var svgVal;
+        var currentPhase;
+        var days;
         if (percent == 0 || percent == 200) {
           sourceString += "waning-100";
+          currentPhase = "Full Moon";
+          days = period / 2.0;
         } else if (percent <= 100 && percent > 0){
           sourceString += "waning-";
           svgVal = 100 - percent;
@@ -923,6 +928,18 @@ background: white;
             sourceString += "0";
           }
           sourceString += svgVal.toString();
+
+          if (svgVal <= 4) {
+            currentPhase = "New Moon";
+          } else if (svgVal >= 46 && svgVal <= 54) {
+            currentPhase = "Third Quarter";
+          } else if (svgVal > 4 && svgVal < 46) {
+            currentPhase = "Waning Crescent";
+          } else {
+            currentPhase = "Waning Gibbous";
+          }
+
+          days = period * ((100 + percent) / 200.0);
         } else {
           sourceString += "waxing-";
           svgVal = percent - 100;
@@ -932,11 +949,25 @@ background: white;
             sourceString += "0";
           }
           sourceString += svgVal.toString();
+
+          if (svgVal <= 4) {
+            currentPhase = "New Moon";
+          } else if (svgVal >= 46 && svgVal <= 54) {
+            currentPhase = "First Quarter";
+          } else if (svgVal > 0 && svgVal < 50) {
+            currentPhase = "Waxing Crescent";
+          } else {
+            currentPhase = "Waxing Gibbous";
+          }
+
+          days = period * ((percent - 100) / 200.0);
         }
         sourceString += ".svg";
-        console.log(sourceString);
+        days = Math.round(days * 100) / 100;
+        //console.log(sourceString);
         $("#phase").attr("src", sourceString); // img source for Lunar Phase Diagram
-
+        $("#current span").html("Current Phase: " + currentPhase);
+        $("#daysSince span").html("Days Since New Moon: " + days);
     }
     function stopFunction(){
         clearInterval(myVar); // stop the timer
@@ -948,11 +979,14 @@ background: white;
   </script>
   <div id="controls">
       <img id="phase" src="Lunar_Phase_Diagrams/Moon-waning-050.svg" />
-      <label>
-        <span>Days since new moon: </span>
+      <label id="current">
+        <span>Current Phase: </span>
+      </label>
+      <label id="daysSince">
+        <span>Days Since New Moon: </span>
       </label>
       <label>
-        <span>Percent illuminated: </span>
+        <span>Percent Illuminated: </span>
       </label>
   </div>
   <div id="universe" class="scale-stretched">
