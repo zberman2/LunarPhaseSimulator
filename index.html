@@ -895,7 +895,66 @@ background: white;
         <input type="radio" class="set-distance" name="scale">
         <span>Distance</span>
       </label>
-  </div>-->
+  </div>
+  -->
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+  <script type="text/javascript">
+    var myVar;
+    var startTime;
+    function showPhase(){
+        var now = $.now();
+        var diff = now - startTime;
+        var rep = Math.floor(diff / 20000.0);
+
+        // percent will be out of 200
+        var percent = Math.round(((diff / 20000.0) - rep) * 200);
+        console.log(percent);
+
+        var sourceString = "Lunar_Phase_Diagrams/Moon-";
+        var svgVal;
+        if (percent == 0 || percent == 200) {
+          sourceString += "waning-100";
+        } else if (percent <= 100 && percent > 0){
+          sourceString += "waning-";
+          svgVal = 100 - percent;
+          if (svgVal < 10) {
+            sourceString += "00";
+          } else {
+            sourceString += "0";
+          }
+          sourceString += svgVal.toString();
+        } else {
+          sourceString += "waxing-";
+          svgVal = percent - 100;
+          if (svgVal < 10) {
+            sourceString += "00";
+          } else {
+            sourceString += "0";
+          }
+          sourceString += svgVal.toString();
+        }
+        sourceString += ".svg";
+        console.log(sourceString);
+        $("#phase").attr("src", sourceString); // img source for Lunar Phase Diagram
+
+    }
+    function stopFunction(){
+        clearInterval(myVar); // stop the timer
+    }
+    $(document).ready(function(){
+        myVar = setInterval("showPhase()", 100);
+        startTime = $.now();
+    });
+  </script>
+  <div id="controls">
+      <img id="phase" src="Lunar_Phase_Diagrams/Moon-waning-050.svg" />
+      <label>
+        <span>Days since new moon: </span>
+      </label>
+      <label>
+        <span>Percent illuminated: </span>
+      </label>
+  </div>
   <div id="universe" class="scale-stretched">
     <div id="galaxy">
       <div id="solar-system" class="earth">

@@ -13,12 +13,8 @@ Forked from [Julian Garnier](http://codepen.io/juliangarnier/)'s Pen [CSS 3D Sol
 
 TODO:
 
-Adjust earth orbit (center the earth in the screen)
-
-Adjust lunar orbit (give it some more distance from the earth)
-
 Track the moon in its orbit (idea: use clock (animation time -> lunar phase))
 
-Make space on screen for the svg image of the lunar phase
+Shade the moon (half illuminated)
 
-Make space for extra stats
+Button for start/stop animation

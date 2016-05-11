@@ -5,7 +5,7 @@ $(window).load(function(){
       solarsys = $("#solar-system");
 
   var init = function() {
-    body.removeClass('zoom-large opening').addClass("zoom-close").delay(2000).queue(function() {
+    body.removeClass('zoom-large opening').addClass("zoom-close").delay(0).queue(function() {
       $(this).removeClass('hide-UI').addClass("set-speed");
       $(this).dequeue();
     });
