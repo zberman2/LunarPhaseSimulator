@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <title>Lunar Phase Simulator</title>
-
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 
 
 
@@ -788,13 +788,28 @@ body {
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAMAAAAM7l6QAAAABGdBTUEAALGPC/xhBQAAAGBQTFRFGDRdAyFNIDxkQld5CCZTIztsJD1lAAAArsblO230dJfgP2vUnLbbbovAOF2vN1GERnb0Un/yW3asWH3PeY+uhKfyYXaVjafNT2WNeJ3zv9f0nrzzX4rzkLHzrcjzbZX0L9IPbAAAAAh0Uk5TfSC49Uv+4wC/XoCAAAACEUlEQVQoz12T2WKrMAxECWDC4n1fZOv//7IiaXp760cOtkaj0fT8nHXe1LLEmJd5/fk4feDGGFPeR0U/5G39H290zXohhJUi+czY9gs/lhytsM4JvvPEebJZsccH3zSldDrX6uhw8jMl/+Y33nKWibdQChhTsDRzXdbm5Y1nla1LYxAwGjsChvPmcb7xGrMVrtemQdPB0ltt6C6Z80p4y164CxpqMMcBZdRWey9O2rg9p5VlIS5ttMGCiGFUgn20xoXP6zQrJd2JAKW83q11tF5Cb9zZPE9btPIcI5AmLKXXEfoIASGchLeJ5eTCKNA7GMReu8HR26AGLqnUxFRyF3U7aqFrpQVjXrXBOJGXKUexl5fgPsgzqjpIV2sAztk4ZZ/2gVBqfb8NJH/QwcC5j1P0KTU0UOttKrUHh8Y2qL/9jcUZAsCrJTwOHYyG3so3XrJNJ7U1Xn4UfWiAW1nrPPllmqk4v1lrRQMarQ2QPKonBNmyLlScGg1Ik6C6QG8XbA3P5NlKI6EonGHoA2gY5BwZVqAAReIeyXNlyvJ9DJpWozcPU8hzJFNsvAf6pIySOooDUBA6tRBCP5OUav4OE1NSXHu9nQ+kn9LiklXbTxSJS7fvt1kAx+Wc9H57/Aty9FImms3Or+uSBOPy+LUGc/RkT6KgO0lVY57/LpHKlEnrvacV+LtE7xVkSuW8bL9W8AvOdz8ZXmQqKAAAAABJRU5ErkJggg==); }
 
 #earth .moon {
-/*background: white;*/
-    display: block;
-    border-radius: 50%;
-    background-color: gray;
-    float: left;
+    background-color: #212121;
     background-image:
-        linear-gradient(90deg, white 50%, transparent 50%);
+        linear-gradient(90deg, white 50%, transparent 0%);
+}
+
+#moonDiv1 {
+    animation: circle 20s linear infinite;
+    transform-origin:50% 200px;
+}
+
+#moonDiv2 {
+    animation: inner-circle 20s linear infinite;
+}
+
+@keyframes circle {
+    from { transform:rotate(0deg); }
+    to { transform:rotate(-360deg); }
+}
+
+@keyframes inner-circle {
+    from { transform:rotate(0deg); }
+    to { transform:rotate(360deg); }
 }
 
 /* --------------------------------------------------------------------------- responsive styles */
@@ -879,6 +894,7 @@ body {
   <script type="text/javascript">
     var myVar;
     var startTime;
+    var stopTime;
     var period = 29.5305882;
     function toRadians(angle) {
       return angle * (Math.PI / 180);
@@ -957,8 +973,23 @@ body {
     }
     function stopFunction(){
         clearInterval(myVar); // stop the timer
-        //$("#earth orbit").attr("animation-play-state", paused);
+        stopTime = $.now();
+        $("#earth .orbit").css("-webkit-animation-play-state", "paused");
+        $("#moonDiv1").css("-webkit-animation-play-state", "paused");
+        $("#moonDiv2").css("-webkit-animation-play-state", "paused");
+        $("#stop").prop("disabled",true);
+        $("#start").prop("disabled",false);
     }
+    function startFunction(){
+        myVar = setInterval("showPhase()", 100);
+        startTime = $.now() - (stopTime-startTime);
+        $("#earth .orbit").css("-webkit-animation-play-state", "running");
+        $("#moonDiv1").css("-webkit-animation-play-state", "running");
+        $("#moonDiv2").css("-webkit-animation-play-state", "running");
+        $("#stop").prop("disabled",false);
+        $("#start").prop("disabled",true);
+    }
+
     $(document).ready(function(){
         myVar = setInterval("showPhase()", 100);
         startTime = $.now();
@@ -975,7 +1006,8 @@ body {
       <label id="illuminated">
         <span>Percent Illuminated: </span>
       </label>
-      <!--<button class="earth" onclick="stopFunction()">Pause</button>-->
+      <button class="pure-button" id="stop" onclick="stopFunction()">Pause</button>
+      <button class="pure-button" id="start" onclick="startFunction()" disabled>Play</button>
   </div>
   <div id="universe" class="scale-stretched">
     <div id="galaxy">
@@ -983,8 +1015,8 @@ body {
         <div id="earth" class="orbit">
           <div class="pos">
             <div class="orbit">
-              <div class="pos">
-                <div class="moon"></div>
+              <div class="pos" id="moonDiv1">
+                <div class="moon" id="moonDiv2"></div>
               </div>
             </div>
             <div class="planet">

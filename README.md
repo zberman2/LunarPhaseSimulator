@@ -13,6 +13,4 @@ Forked from [Julian Garnier](http://codepen.io/juliangarnier/)'s Pen [CSS 3D Sol
 
 TODO:
 
-Shade the moon (half illuminated)
-
 Button for start/stop animation
