@@ -13,8 +13,6 @@ Forked from [Julian Garnier](http://codepen.io/juliangarnier/)'s Pen [CSS 3D Sol
 
 TODO:
 
-Track the moon in its orbit (idea: use clock (animation time -> lunar phase))
-
 Shade the moon (half illuminated)
 
 Button for start/stop animation
