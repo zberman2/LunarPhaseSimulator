@@ -1,7 +1,7 @@
 # LunarPhaseSimulator
 ASTR 390 Independent Study
 
-Study done by Zack Berman with the help of Professor Brian Dunne within the Astronomy department of the Universit of Illinois at Urbana-Champaign.
+Study done by Zack Berman with the help of Professor Brian Dunne within the Astronomy department of the University of Illinois at Urbana-Champaign.
 
 A Pen created at CodePen.io. You can find this one at http://codepen.io/anon/pen/RaKNXy.
 
