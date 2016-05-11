@@ -902,6 +902,9 @@ background: white;
     var myVar;
     var startTime;
     var period = 29.5305882;
+    function toRadians(angle) {
+      return angle * (Math.PI / 180);
+    }
     function showPhase(){
         var now = $.now();
         var diff = now - startTime;
@@ -964,10 +967,15 @@ background: white;
         }
         sourceString += ".svg";
         days = Math.round(days * 100) / 100;
+
+        var E_s = toRadians((percent / 200.0) * 360);
+        var lum = (1 + Math.cos(E_s)) / 2.0;
+        lum = Math.round(lum * 10000) / 100;
         //console.log(sourceString);
         $("#phase").attr("src", sourceString); // img source for Lunar Phase Diagram
         $("#current span").html("Current Phase: " + currentPhase);
         $("#daysSince span").html("Days Since New Moon: " + days);
+        $("#illuminated span").html("Percent Illuminated: " + lum + " %");
     }
     function stopFunction(){
         clearInterval(myVar); // stop the timer
@@ -985,7 +993,7 @@ background: white;
       <label id="daysSince">
         <span>Days Since New Moon: </span>
       </label>
-      <label>
+      <label id="illuminated">
         <span>Percent Illuminated: </span>
       </label>
   </div>
