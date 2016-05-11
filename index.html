@@ -975,10 +975,11 @@ background: white;
         $("#phase").attr("src", sourceString); // img source for Lunar Phase Diagram
         $("#current span").html("Current Phase: " + currentPhase);
         $("#daysSince span").html("Days Since New Moon: " + days);
-        $("#illuminated span").html("Percent Illuminated: " + lum + " %");
+        $("#illuminated span").html("Fraction Illuminated: " + lum + " %");
     }
     function stopFunction(){
         clearInterval(myVar); // stop the timer
+        //$("#earth orbit").attr("animation-play-state", paused);
     }
     $(document).ready(function(){
         myVar = setInterval("showPhase()", 100);
@@ -996,6 +997,7 @@ background: white;
       <label id="illuminated">
         <span>Percent Illuminated: </span>
       </label>
+      <!--<button class="earth" onclick="stopFunction()">Pause</button>-->
   </div>
   <div id="universe" class="scale-stretched">
     <div id="galaxy">
