@@ -12,3 +12,7 @@ Inspired by http://neography.com/experiment/circles/solarsystem/ and http://nico
 
 
 Forked from [Julian Garnier](http://codepen.io/juliangarnier/)'s Pen [CSS 3D Solar System](http://codepen.io/juliangarnier/pen/idhuG/).
+
+TODO:
+
+Add responsiveness to lunar phase diagram and calculation results
