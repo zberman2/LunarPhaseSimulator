@@ -1,8 +1,8 @@
-$(window).load(function(){
+$(window).load(function() {
 
   var body = $("body"),
-      universe = $("#universe"),
-      solarsys = $("#solar-system");
+    universe = $("#universe"),
+    solarsys = $("#solar-system");
 
   var init = function() {
     body.removeClass('zoom-large opening').addClass("zoom-close").delay(0).queue(function() {
@@ -11,7 +11,9 @@ $(window).load(function(){
     });
   };
 
-  var setView = function(view) { universe.removeClass().addClass(view); };
+  var setView = function(view) {
+    universe.removeClass().addClass(view);
+  };
 
   $("#toggle-data").click(function(e) {
     body.toggleClass("data-open data-close");
@@ -31,11 +33,21 @@ $(window).load(function(){
     e.preventDefault();
   });
 
-  $(".set-view").click(function() { body.toggleClass("view-3D view-2D"); });
-  $(".set-zoom").click(function() { body.toggleClass("zoom-large zoom-close"); });
-  $(".set-speed").click(function() { setView("scale-stretched set-speed"); });
-  $(".set-size").click(function() { setView("scale-s set-size"); });
-  $(".set-distance").click(function() { setView("scale-d set-distance"); });
+  $(".set-view").click(function() {
+    body.toggleClass("view-3D view-2D");
+  });
+  $(".set-zoom").click(function() {
+    body.toggleClass("zoom-large zoom-close");
+  });
+  $(".set-speed").click(function() {
+    setView("scale-stretched set-speed");
+  });
+  $(".set-size").click(function() {
+    setView("scale-s set-size");
+  });
+  $(".set-distance").click(function() {
+    setView("scale-d set-distance");
+  });
 
   init();
 
