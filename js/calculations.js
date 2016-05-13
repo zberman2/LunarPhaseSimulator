@@ -102,8 +102,8 @@ function stopFunction() {
   $("#earth .orbit").css("-webkit-animation-play-state", "paused");
   $("#moonDiv1").css("-webkit-animation-play-state", "paused");
   $("#moonDiv2").css("-webkit-animation-play-state", "paused");
-  $("#stop").prop("disabled", true);
-  $("#start").prop("disabled", false);
+  $("#stop").prop("hidden", true);
+  $("#start").prop("hidden", false);
 }
 
 function startFunction() {
@@ -112,8 +112,8 @@ function startFunction() {
   $("#earth .orbit").css("-webkit-animation-play-state", "running");
   $("#moonDiv1").css("-webkit-animation-play-state", "running");
   $("#moonDiv2").css("-webkit-animation-play-state", "running");
-  $("#stop").prop("disabled", false);
-  $("#start").prop("disabled", true);
+  $("#stop").prop("hidden", false);
+  $("#start").prop("hidden", true);
 }
 
 $(document).ready(function() {

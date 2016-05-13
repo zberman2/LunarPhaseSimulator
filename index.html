@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8">
     <title>Lunar Phase Simulator</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/prefixfree.min.js"></script>
@@ -21,21 +25,18 @@
 
       <!-- phase calculations results -->
       <div id="controls">
-        <img style="width: 100%; height: auto;" id="phase" src="Lunar_Phase_Diagrams/Moon-waning-050.svg"/>
+        <img style="width: 100%; height: auto;" class="img-responsive" id="phase" src="Lunar_Phase_Diagrams/Moon-waning-050.svg"/>
         <label id="current">
-          <span>Current Phase:
-          </span>
+          <span>Current Phase:</span>
         </label>
         <label id="daysSince">
-          <span>Days Since New Moon:
-          </span>
+          <span>Days Since New Moon:</span>
         </label>
         <label id="illuminated">
-          <span>Percent Illuminated:
-          </span>
+          <span>Percent Illuminated:</span>
         </label>
-        <button class="pure-button" id="stop" onclick="stopFunction()">Pause</button>
-        <button class="pure-button" id="start" onclick="startFunction()" disabled>Play</button>
+        <button style="float: right;" class="btn btn-default" id="stop" onclick="stopFunction()">Pause</button>
+        <button style="float: right;" class="btn btn-default" id="start" onclick="startFunction()" hidden>Play</button>
       </div>
       <div id="universe" class="scale-stretched">
         <div id="galaxy">
